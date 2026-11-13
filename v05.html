@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>셰이드서울 Shade Seoul · 발표 v05</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{
+  --brand:#002FA7; --brandDeep:#001C64; --accent:#FF7A00;
+  --t2:#4D6DC1; --t3:#99ACDB; --t4:#D9E0F2; --pale:#EAEEF8;
+  --ink:#222222; --mute:#5A6678; --source:#5F6B78; --grey:#9AA3B2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#1b1f27;overflow:hidden;font-family:"Pretendard","Pretendard Variable","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1280px;height:720px;position:relative;flex:none;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;overflow:hidden;display:none;background:#fff}
+.slide.on{display:block}
+.slide.brand{background:var(--brand)}
+.slide.deep{background:var(--brandDeep)}
+.slide.pale{background:var(--pale)}
+.a{position:absolute}
+.f{position:absolute;display:flex;align-items:center}
+.top{align-items:flex-start}
+.big{font-weight:700;letter-spacing:-3px;line-height:1.08;white-space:nowrap}
+.rule{position:absolute;height:1px;background:rgba(0,0,0,.14)}
+.dk .rule{background:rgba(255,255,255,.22)}
+.src{position:absolute;left:80px;top:652px;width:1000px;height:40px;display:flex;align-items:center;font-size:10pt;color:var(--source)}
+.dk .src{color:var(--t3)}
+.pn{position:absolute;right:48px;top:660px;font-size:10pt;color:var(--grey)}
+.dk .pn{color:var(--t3)}
+.ctl{position:absolute;display:flex;gap:8px;z-index:5;right:64px;top:36px}
+.ctl button{font:600 12pt Pretendard,sans-serif;border:0;border-radius:99px;padding:8px 18px;background:rgba(0,0,0,.07);color:var(--mute);cursor:pointer}
+.ctl button.on{background:var(--brand);color:#fff}
+.dk .ctl button{background:rgba(255,255,255,.14);color:#fff}
+.dk .ctl button.on{background:#fff;color:var(--brandDeep)}
+.grid{position:absolute;display:grid}
+.grid span{border-radius:50%;background:#fff}
+.grid span.f1{background:var(--brand)}
+.sim{position:absolute;left:80px;top:190px;width:660px}
+.sim .row{display:flex;align-items:center;margin-bottom:34px}
+.sim .nm{width:190px;font-size:16pt;font-weight:700;color:var(--ink);display:flex;flex-direction:column}
+.sim .nm small{font-size:10pt;font-weight:400;color:var(--mute)}
+.sim input{width:300px;accent-color:var(--brand)}
+.sim .val{width:130px;text-align:right;font-size:22pt;font-weight:700;color:var(--brand)}
+.hint{transition:opacity .6s;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);color:#8a94a2;font-size:12px;opacity:.8;z-index:9}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{overflow:visible;height:auto;background:none}
+  #wrap{position:static;display:block}
+  #stage{transform:none!important;width:1280px;height:auto}
+  .slide{display:block!important;position:relative;page-break-after:always;break-after:page}
+  .hint{display:none}
+}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+
+<!-- 1 표지 -->
+<section class="slide brand dk">
+  <div class="f" style="left:80px;top:64px;height:30px;font-size:16pt;font-weight:600;color:var(--t3)">셰이드서울 Shade Seoul</div>
+  <div class="f big" style="left:74px;top:170px;height:300px;font-size:96pt;color:#fff">서울에 오지 않아도<br>내 색을 찾게.</div>
+  <div class="a" style="left:80px;top:512px;width:96px;height:8px;background:var(--accent)"></div>
+  <div class="f" style="left:80px;top:548px;height:40px;font-size:20pt;color:var(--t4)">지금 쓰는 파운데이션으로 한국 쿠션 호수(색 번호)를 찾아 줍니다.</div>
+  <div class="f" style="left:80px;top:640px;height:30px;font-size:13pt;color:var(--t3)">뉴럴랩 · 2026-2학기 창업 아이디어 경진대회</div>
+  <div class="pn"></div>
+</section>
+
+<!-- 2 문제 -->
+<section class="slide deep dk">
+  <div class="ctl"><button class="on" data-v="q">질문 기준</button><button data-v="r">리뷰 기준</button></div>
+  <div class="f big" id="p1n" style="left:56px;top:90px;height:380px;font-size:236pt;letter-spacing:-9px;color:#fff">47%</div>
+  <div class="f top big" style="left:790px;top:150px;width:420px;height:230px;font-size:34pt;letter-spacing:-1px;line-height:1.28;color:#fff;white-space:normal"><span id="p1t">공개 질문의<br>거의 절반이<br>“어떤 호수요?”</span></div>
+  <div class="f top" style="left:790px;top:380px;width:420px;height:100px;font-size:18pt;color:var(--t3);line-height:1.5"><span id="p1c">Ulta TIRTIR 쿠션 페이지<br>공개 질문 43개 중 20개</span></div>
+  <div class="rule" style="left:80px;top:530px;width:1120px"></div>
+  <div class="f" style="left:80px;top:552px;width:1120px;height:70px;font-size:24pt;color:#fff;font-weight:500">“온라인 추천은 21N이었는데, 나한테 맞는 건 17N이었다.”<span style="font-size:12pt;color:var(--t3);margin-left:20px">고객 리뷰 번역</span></div>
+  <div class="src">Source: Ulta TIRTIR 쿠션 페이지 공개 질문·리뷰(개선안 근거 자료)</div>
+  <div class="pn"></div>
+</section>
+
+<!-- 3 틈 -->
+<section class="slide">
+  <div class="f big top" style="left:76px;top:120px;width:620px;height:400px;font-size:58pt;letter-spacing:-2px;line-height:1.22;color:var(--ink);white-space:normal"><div>한국 쿠션<br>호수로 바꿔<br>주는 곳을<br><span style="color:var(--brand)">못 찾았습니다.</span></div></div>
+  <div class="f" style="left:740px;top:80px;height:30px;font-size:13pt;font-weight:600;color:var(--grey)">찾아본 곳 (영어 도구 기준)</div>
+  <div class="rule" style="left:740px;top:128px;width:460px"></div>
+  <div class="f" style="left:740px;top:134px;width:470px;height:88px;flex-direction:column;align-items:flex-start;justify-content:center"><div style="font-size:26pt;font-weight:700;color:var(--ink);letter-spacing:-1px">정부 데이터</div><div style="font-size:14pt;color:var(--mute);margin-top:4px">데이터는 있지만 내 호수까지는 안 줍니다</div></div>
+  <div class="rule" style="left:740px;top:228px;width:460px"></div>
+  <div class="f" style="left:740px;top:234px;width:470px;height:88px;flex-direction:column;align-items:flex-start;justify-content:center"><div style="font-size:26pt;font-weight:700;color:var(--ink);letter-spacing:-1px">브랜드 도구</div><div style="font-size:14pt;color:var(--mute);margin-top:4px">자기 브랜드 제품 안에서만 찾습니다</div></div>
+  <div class="rule" style="left:740px;top:328px;width:460px"></div>
+  <div class="f" style="left:740px;top:334px;width:470px;height:88px;flex-direction:column;align-items:flex-start;justify-content:center"><div style="font-size:26pt;font-weight:700;color:var(--ink);letter-spacing:-1px">호수 변환 서비스</div><div style="font-size:14pt;color:var(--mute);margin-top:4px">Findation 등, 한국 브랜드 지원은 확인하지 못했습니다</div></div>
+  <div class="rule" style="left:740px;top:428px;width:460px"></div>
+  <div class="f" style="left:740px;top:434px;width:470px;height:88px;flex-direction:column;align-items:flex-start;justify-content:center"><div style="font-size:26pt;font-weight:700;color:var(--ink);letter-spacing:-1px">쇼핑몰</div><div style="font-size:14pt;color:var(--mute);margin-top:4px">호수 찾기 기능이 없습니다 (조사한 곳 기준)</div></div>
+  <div class="rule" style="left:740px;top:528px;width:460px"></div>
+  <div class="src">Source: 개선안 시장 조사(영어 도구 기준, 직접 확인한 범위). SGIP 데이터 사용 가능 여부는 확인 전입니다.</div>
+  <div class="pn"></div>
+</section>
+
+<!-- 4 해결 -->
+<section class="slide">
+  <div class="a" style="left:560px;top:0;width:720px;height:720px;background:var(--brand)"></div>
+  <div class="f" style="left:80px;top:150px;height:30px;font-size:16pt;font-weight:600;color:var(--mute)">지금 쓰는 파운데이션 호수</div>
+  <div class="f big" style="left:72px;top:200px;height:240px;font-size:150pt;letter-spacing:-5px;color:var(--ink)">21N</div>
+  <div class="f" style="left:80px;top:450px;height:30px;font-size:13pt;color:var(--mute)">브랜드 A (예시)</div>
+  <div class="a" style="left:514px;top:290px;width:92px;height:92px;border-radius:50%;background:var(--accent)"></div>
+  <div class="f" style="left:514px;top:290px;width:92px;height:92px;justify-content:center;font-size:34pt;font-weight:700;color:#fff">→</div>
+  <div class="f" style="left:680px;top:150px;height:30px;font-size:16pt;font-weight:600;color:var(--t3)">한국 쿠션 호수 (색 번호)</div>
+  <div class="f big" style="left:676px;top:215px;height:210px;font-size:82pt;letter-spacing:-3px;color:#fff">21호 · 23호</div>
+  <div class="f" style="left:680px;top:450px;height:30px;font-size:13pt;color:var(--t3)">쿠션 B · 쿠션 C (예시 화면, 실제 매칭 값 아님)</div>
+  <div class="a" style="left:680px;top:540px;width:520px;height:1px;background:rgba(255,255,255,.28)"></div>
+  <div class="f" style="left:680px;top:560px;width:540px;height:50px;font-size:17pt;font-weight:600;color:#fff;gap:16px"><span>설치 없음</span><span style="color:var(--t3)">/</span><span>쓰던 제품·호수만 입력</span><span style="color:var(--t3)">/</span><span>쇼핑몰 안에서 바로</span></div>
+  <div class="src" style="width:440px;height:50px;top:630px">매칭 정확도는 아직 검증 전입니다.</div>
+  <div class="pn" style="color:var(--t3)"></div>
+</section>
+
+<!-- 5 수익 -->
+<section class="slide">
+  <div class="f big" style="left:72px;top:70px;height:260px;font-size:104pt;letter-spacing:-5px;color:var(--ink)"><div>월 이용료 <span style="color:var(--brand)">하나.</span></div></div>
+  <div class="rule" style="left:80px;top:370px;width:1120px"></div>
+  <div class="f top" style="left:80px;top:392px;width:340px;height:140px;flex-direction:column;align-items:flex-start"><div style="font-size:30pt;font-weight:700;color:var(--ink);letter-spacing:-1px">고객은 쇼핑몰</div><div style="font-size:15pt;color:var(--mute);margin-top:10px">쇼핑몰이 월 이용료를 냅니다</div></div>
+  <div class="f top" style="left:470px;top:392px;width:340px;height:140px;flex-direction:column;align-items:flex-start"><div style="font-size:30pt;font-weight:700;color:var(--ink);letter-spacing:-1px">첫 달 무료</div><div style="font-size:15pt;color:var(--mute);margin-top:10px">이용료는 둘째 달부터입니다</div></div>
+  <div class="f top" style="left:860px;top:392px;width:340px;height:140px;flex-direction:column;align-items:flex-start"><div style="font-size:30pt;font-weight:700;color:var(--ink);letter-spacing:-1px">준비는 우리가</div><div style="font-size:15pt;color:var(--mute);margin-top:10px">링크나 스크립트 한 줄로 붙입니다</div></div>
+  <div class="f top" style="left:80px;top:560px;width:1100px;height:60px;font-size:17pt;color:var(--mute)">목표는 쇼핑몰의 호수 질문과 반품을 줄이는 것입니다. 효과는 시범 도입 뒤 숫자로 확인합니다.</div>
+  <div class="src">가격 기준: 비슷한 플러그인 Match My Makeup은 월 200달러부터 + 판매 수수료. 쇼핑몰이 실제로 돈을 낼지는 문의 전입니다.</div>
+  <div class="pn"></div>
+</section>
+
+<!-- 6 근거 -->
+<section class="slide pale">
+  <div class="ctl"><button class="on" data-v="s">호수 기준</button><button data-v="b">브랜드 기준</button></div>
+  <div class="f top big" style="left:76px;top:92px;width:700px;height:120px;font-size:28pt;letter-spacing:-1px;line-height:1.3;color:var(--ink);white-space:normal"><span id="p6t">해외 쇼핑몰 한국 베이스<br>어두운 호수(30호 이상)</span></div>
+  <div class="f big" id="p6n" style="left:52px;top:210px;height:300px;font-size:190pt;letter-spacing:-8px;color:var(--brandDeep)">11.9%</div>
+  <div class="f top" style="left:80px;top:520px;width:720px;height:80px;font-size:16pt;color:var(--mute);line-height:1.5"><span id="p6c">호수 852개 중 · 호수 번호로 나눈 비율이며 실제 색을 잰 값은 아닙니다</span></div>
+  <div class="grid" id="g100" style="left:900px;top:130px"></div>
+  <div class="grid" id="g65" style="left:900px;top:130px;display:none"></div>
+  <div class="f top" style="left:900px;top:450px;width:310px;height:40px;font-size:12pt;color:var(--mute);line-height:1.4"><span id="p6g">점 1개 = 호수 1% (11.9%를 12칸으로 반올림)</span></div>
+  <div class="f top" style="left:900px;top:520px;width:310px;height:100px;font-size:17pt;font-weight:700;line-height:1.45;color:var(--ink)">65개 브랜드 중 10개만<br>어두운 호수가 있습니다</div>
+  <div class="src">Source: 우리 수집 데이터(2026-11-10). 분석 호수 1,019개, 비율의 분모는 한국 베이스 호수 852개. 레딧·아마존은 접근이 막혀 확인하지 못했습니다.</div>
+  <div class="pn"></div>
+</section>
+
+<!-- 7 검증 -->
+<section class="slide deep dk">
+  <div class="f big top" style="left:76px;top:70px;width:1100px;height:240px;font-size:58pt;letter-spacing:-2px;line-height:1.2;color:#fff">아직 모르는 세 가지,<br>지금 확인합니다.</div>
+  <div class="rule" style="left:80px;top:340px;width:1120px"></div>
+  <div class="f" style="left:80px;top:350px;width:760px;height:90px;font-size:32pt;font-weight:700;color:#fff;letter-spacing:-1px">외국인 실제 목소리</div>
+  <div class="f" style="left:840px;top:350px;width:360px;height:90px;justify-content:flex-end;font-size:20pt;color:var(--t3)">11/13 예정</div>
+  <div class="rule" style="left:80px;top:450px;width:1120px"></div>
+  <div class="f" style="left:80px;top:460px;width:760px;height:90px;font-size:32pt;font-weight:700;color:#fff;letter-spacing:-1px">호수 매칭 정확도</div>
+  <div class="f" style="left:840px;top:460px;width:360px;height:90px;justify-content:flex-end;font-size:20pt;color:var(--t3)">검증 전</div>
+  <div class="rule" style="left:80px;top:560px;width:1120px"></div>
+  <div class="f" style="left:80px;top:570px;width:760px;height:80px;font-size:32pt;font-weight:700;color:#fff;letter-spacing:-1px">쇼핑몰이 돈을 낼지</div>
+  <div class="f" style="left:840px;top:570px;width:360px;height:80px;justify-content:flex-end;font-size:20pt;color:var(--t3)">문의 전</div>
+  <div class="src" style="top:665px;height:30px">정부(SGIP) 데이터를 우리가 쓸 수 있는지도 확인 전입니다.</div>
+  <div class="pn" style="top:668px"></div>
+</section>
+
+<!-- 8 팀 -->
+<section class="slide brand dk">
+  <div class="f big top" style="left:76px;top:80px;width:1100px;height:230px;font-size:58pt;letter-spacing:-2px;line-height:1.2;color:#fff">함께 만드는 네 사람,<br>셰이드서울.</div>
+  <div class="a" style="left:80px;top:340px;width:96px;height:8px;background:var(--accent)"></div>
+  <div class="f" style="left:80px;top:390px;width:540px;height:80px;gap:20px;align-items:baseline"><span style="font-size:30pt;font-weight:700;color:#fff;letter-spacing:-1px">이민서</span><span style="font-size:15pt;color:var(--t3)">대표 · 매칭·제안</span></div>
+  <div class="f" style="left:680px;top:390px;width:540px;height:80px;gap:20px;align-items:baseline"><span style="font-size:30pt;font-weight:700;color:#fff;letter-spacing:-1px">홍세민</span><span style="font-size:15pt;color:var(--t3)">UI/UX · 설문·인터뷰</span></div>
+  <div class="f" style="left:80px;top:480px;width:540px;height:80px;gap:20px;align-items:baseline"><span style="font-size:30pt;font-weight:700;color:#fff;letter-spacing:-1px">유인식</span><span style="font-size:15pt;color:var(--t3)">백엔드 · 데이터</span></div>
+  <div class="f" style="left:680px;top:480px;width:540px;height:80px;gap:20px;align-items:baseline"><span style="font-size:30pt;font-weight:700;color:#fff;letter-spacing:-1px">이상민</span><span style="font-size:15pt;color:var(--t3)">프론트엔드 · 데모</span></div>
+  <div class="f" style="left:80px;top:600px;width:1100px;height:40px;font-size:14pt;color:var(--t3)">외국인 인터뷰는 각자 5명씩 (유학생·레딧)</div>
+  <div class="pn"></div>
+</section>
+
+<!-- 9 부록 -->
+<section class="slide">
+  <div class="f" style="left:80px;top:56px;height:30px;font-size:13pt;font-weight:600;color:var(--grey)">부록 · 가정 계산</div>
+  <div class="f big" style="left:76px;top:90px;height:80px;font-size:36pt;letter-spacing:-1px;color:var(--ink)">아래 숫자를 바꾸면 매출이 함께 변합니다.</div>
+  <div class="sim">
+    <div class="row"><div class="nm">입점 쇼핑몰<small>곳</small></div><input id="sn" type="range" min="1" max="20" step="1" value="5"><div class="val" id="snv"></div></div>
+    <div class="row"><div class="nm">월 이용료<small>달러</small></div><input id="sp" type="range" min="50" max="300" step="10" value="200"><div class="val" id="spv"></div></div>
+    <div class="row"><div class="nm">무료 기간<small>개월</small></div><input id="sf" type="range" min="0" max="3" step="1" value="1"><div class="val" id="sfv"></div></div>
+  </div>
+  <div class="f" style="left:80px;top:440px;width:660px;height:30px;font-size:12pt;color:var(--mute)">첫해 매출 비교 (기준: 5곳·200달러·무료 1개월)</div>
+  <div class="f" style="left:80px;top:480px;width:110px;height:38px;font-size:13pt;font-weight:700">기준</div>
+  <div class="a" id="bb" style="left:190px;top:480px;height:38px;background:var(--t3);border-radius:4px"></div><div class="f" id="bbv" style="top:480px;height:38px;font-size:13pt;font-weight:700"></div>
+  <div class="f" style="left:80px;top:530px;width:110px;height:38px;font-size:13pt;font-weight:700">현재 계획</div>
+  <div class="a" id="bc" style="left:190px;top:530px;height:38px;background:var(--brand);border-radius:4px"></div><div class="f" id="bcv" style="top:530px;height:38px;font-size:13pt;font-weight:700"></div>
+  <div class="rule" style="left:820px;top:200px;width:380px"></div>
+  <div class="f" style="left:820px;top:210px;height:28px;font-size:13pt;color:var(--mute)">월 이용료 매출</div>
+  <div class="f big" id="sm" style="left:816px;top:240px;height:70px;font-size:36pt;letter-spacing:-1px;color:var(--brand)"></div>
+  <div class="rule" style="left:820px;top:330px;width:380px"></div>
+  <div class="f" style="left:820px;top:340px;height:28px;font-size:13pt;color:var(--mute)">첫해 매출</div>
+  <div class="f big" id="sy" style="left:816px;top:370px;height:70px;font-size:36pt;letter-spacing:-1px;color:var(--ink)"></div>
+  <div class="rule" style="left:820px;top:460px;width:380px"></div>
+  <div class="f" style="left:820px;top:470px;height:28px;font-size:13pt;color:var(--mute)">기준 대비</div>
+  <div class="f big" id="sd" style="left:816px;top:500px;height:70px;font-size:36pt;letter-spacing:-1px;color:var(--ink)"></div>
+  <div class="ctl" style="left:80px;top:602px;right:auto"><button id="srs">기본값으로 초기화</button></div>
+  <div class="src" style="top:660px;height:40px;width:1000px">가정 계산입니다. 실제 계약·실측이 아니며 비용은 빼지 않은 이용료 매출입니다. 200달러는 Match My Makeup 시작 가격이고, 5곳이 처음부터 도입해 무료 기간 뒤 계속 결제한다는 가정입니다. 첫해 매출 = 월 매출 × (12 − 무료 개월).</div>
+  <div class="pn"></div>
+</section>
+
+</div></div>
+<div class="hint">← → 이동 · F 전체화면 · P 인쇄(PDF)</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const stage=document.getElementById('stage');
+let i=Math.max(0,Math.min(slides.length-1,(parseInt(location.hash.slice(1))||1)-1));
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  history.replaceState(null,'','#'+(i+1));
+}
+function fit(){const s=Math.min(innerWidth/1280,innerHeight/720);stage.style.transform='scale('+s+')'}
+slides.forEach((s,k)=>{const p=s.querySelector('.pn');if(p)p.textContent=String(k+1).padStart(2,'0')});
+addEventListener('resize',fit);fit();show(i);setTimeout(()=>{const h=document.querySelector('.hint');if(h)h.style.opacity=0},4000);
+addEventListener('keydown',e=>{
+  const tg=e.target&&e.target.tagName;
+  if(tg==='INPUT'&&['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown'].includes(e.key))return;
+  if(tg==='BUTTON'&&[' ','Enter'].includes(e.key))return;
+  if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();show(i+1)}
+  else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(i-1)}
+  else if(e.key==='Home')show(0);
+  else if(e.key==='End')show(slides.length-1);
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+  else if(e.key==='p'||e.key==='P')print();
+});
+document.getElementById('wrap').addEventListener('click',e=>{if(e.target.closest('.ctl,.sim'))return;if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();show(e.clientX>innerWidth/2?i+1:i-1)});
+
+(function(){
+function mk(id,cols,size,gap,filled,total){const g=document.getElementById(id);
+ g.style.gridTemplateColumns='repeat('+cols+','+size+'px)';g.style.gap=gap+'px';
+ for(let k=0;k<total;k++){const s=document.createElement('span');s.style.width=s.style.height=size+'px';if(k<filled)s.className='f1';g.appendChild(s)}}
+mk('g100',10,24,6,12,100);mk('g65',9,28,6,10,65);
+const T={q:['47%','공개 질문의<br>거의 절반이<br>“어떤 호수요?”','Ulta TIRTIR 쿠션 페이지<br>공개 질문 43개 중 20개'],
+ r:['14%','리뷰의 약 14%가<br>호수 실패','리뷰 345개 중 약 50개가<br>색이 안 맞거나 산화됨 (±5)']};
+const U={s:['11.9%','해외 쇼핑몰 한국 베이스<br>어두운 호수(30호 이상)','호수 852개 중 · 호수 번호로 나눈 비율이며 실제 색을 잰 값은 아닙니다','점 1개 = 호수 1% (11.9%를 12칸으로 반올림)'],
+ b:['10/65','어두운 호수가 있는<br>브랜드','브랜드 65개 중 10개 · 30호 이상 호수가 있는 브랜드 수','점 1개 = 브랜드 1개 (65개 중 10개)']};
+function wire(sec,T,ids){sec.querySelectorAll('.ctl button').forEach(b=>b.addEventListener('click',()=>{
+ sec.querySelectorAll('.ctl button').forEach(x=>x.classList.toggle('on',x===b));b.blur();
+ const v=T[b.dataset.v];ids.forEach((id,k)=>document.getElementById(id).innerHTML=v[k]);
+ if(b.dataset.v==='s'||b.dataset.v==='b'){const sh=b.dataset.v==='s';document.getElementById('g100').style.display=sh?'':'none';document.getElementById('g65').style.display=sh?'none':'';}}));}
+wire(document.getElementById('p1n').closest('.slide'),T,['p1n','p1t','p1c']);
+wire(document.getElementById('p6n').closest('.slide'),U,['p6n','p6t','p6c','p6g']);
+const sn=document.getElementById('sn'),sp=document.getElementById('sp'),sf=document.getElementById('sf');
+const D=n=>n.toLocaleString()+'달러',MAXY=300*20*12,BW=400;
+function sim(){const n=+sn.value,p=+sp.value,f=+sf.value,m=n*p,y=m*(12-f),base=5*200*11;
+ document.getElementById('snv').textContent=n+'곳';document.getElementById('spv').textContent=p+'달러';document.getElementById('sfv').textContent=f+'개월';
+ document.getElementById('sm').textContent=D(m);document.getElementById('sy').textContent=D(y);
+ const d=y-base;document.getElementById('sd').textContent=(d>0?'+':d<0?'−':'')+D(Math.abs(d));
+ const w=v=>Math.max(2,v/MAXY*BW);
+ document.getElementById('bb').style.width=w(base)+'px';document.getElementById('bbv').style.left=(190+w(base)+14)+'px';document.getElementById('bbv').textContent=D(base);
+ document.getElementById('bc').style.width=w(y)+'px';document.getElementById('bcv').style.left=(190+w(y)+14)+'px';document.getElementById('bcv').textContent=D(y);}
+sn.oninput=sp.oninput=sf.oninput=sim;
+document.getElementById('srs').onclick=()=>{sn.value=5;sp.value=200;sf.value=1;sim()};sim();
+})();
+</script>
+</body>
+</html>
