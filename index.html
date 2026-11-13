@@ -71,17 +71,12 @@ html,body{height:100%;background:#1b1f27;overflow:hidden;font-family:"Pretendard
 <!-- 2 문제 -->
 <section class="slide deep dk">
   <div class="ctl"><button class="on" data-v="q">질문 기준</button><button data-v="r">리뷰 기준</button></div>
-  <div class="f big" id="p1n" style="left:56px;top:90px;height:380px;font-size:236pt;letter-spacing:-9px;color:#fff">47%</div>
-  <div class="f top big" style="left:790px;top:150px;width:420px;height:230px;font-size:34pt;letter-spacing:-1px;line-height:1.28;color:#fff;white-space:normal"><span id="p1t">공개 질문의<br>거의 절반이<br>“어떤 호수요?”</span></div>
-  <div class="f top" style="left:790px;top:380px;width:420px;height:100px;font-size:18pt;color:var(--t3);line-height:1.5"><span id="p1c">Ulta TIRTIR 쿠션 페이지<br>공개 질문 43개 중 20개</span></div>
+  <div class="f big" id="p1n" style="left:56px;top:90px;height:380px;font-size:190pt;letter-spacing:-7px;color:#fff">8/20</div>
+  <div class="f top big" style="left:790px;top:150px;width:420px;height:230px;font-size:30pt;letter-spacing:-1px;line-height:1.28;color:#fff;white-space:normal"><span id="p1t">화면에 보이는<br>질문 20개 중 8개가<br>“어떤 호수요?”</span></div>
+  <div class="f top" style="left:790px;top:380px;width:420px;height:100px;font-size:18pt;color:var(--t3);line-height:1.5"><span id="p1c">Ulta TIRTIR 쿠션 페이지<br>전체 43개 중 보이는 20개 (11/13 직접 셈)</span></div>
   <div class="rule" style="left:80px;top:520px;width:1120px"></div>
-  <div class="a" style="left:80px;top:550px;width:84px;height:84px;border-radius:50%;border:3px solid #fff"></div>
-  <div class="f" style="left:80px;top:550px;width:84px;height:84px;justify-content:center;font-size:22pt;font-weight:700;color:#fff">21N</div>
-  <div class="f" style="left:172px;top:550px;width:60px;height:84px;justify-content:center;font-size:26pt;color:var(--accent);font-weight:700">→</div>
-  <div class="a" style="left:240px;top:550px;width:84px;height:84px;border-radius:50%;background:#fff"></div>
-  <div class="f" style="left:240px;top:550px;width:84px;height:84px;justify-content:center;font-size:22pt;font-weight:700;color:var(--brandDeep)">17N</div>
-  <div class="f" style="left:352px;top:545px;width:850px;height:94px;font-size:22pt;color:#fff;font-weight:500;line-height:1.35;white-space:normal"><div>“온라인 추천은 21N이었는데,<br>나한테 맞는 건 17N이었다.”<span style="font-size:12pt;color:var(--t3);margin-left:14px">고객 리뷰 번역 · 개선안 인용, 원문 대조 전</span></div></div>
-  <div class="src">Source: Ulta TIRTIR 쿠션 페이지 공개 질문·리뷰(개선안 근거 자료). 질문 집계와 인용은 원문 재대조 중입니다.</div>
+  <div class="f" style="left:80px;top:545px;width:1120px;height:94px;font-size:22pt;color:#fff;font-weight:500;line-height:1.35;white-space:normal"><div>“이미 21과 17N을 써 봤는데, 너무 노랗지 않은<br>밝은 호수를 추천해 주세요.”<span style="font-size:12pt;color:var(--t3);margin-left:14px">실제 질문 번역</span></div></div>
+  <div class="src">Source: Ulta TIRTIR 쿠션 페이지 공개 질문. 질문 수는 Ulta 페이지에서 11/13 직접 셈(전체 43개 중 보이는 20개 기준). 리뷰 14%는 개선안 값입니다.</div>
   <div class="pn"></div>
 </section>
 
@@ -256,8 +251,8 @@ function mk(id,cols,size,gap,filled,total){const g=document.getElementById(id);
  g.style.gridTemplateColumns='repeat('+cols+','+size+'px)';g.style.gap=gap+'px';
  for(let k=0;k<total;k++){const s=document.createElement('span');s.style.width=s.style.height=size+'px';if(k<filled)s.className='f1';g.appendChild(s)}}
 mk('g100',10,24,6,12,100);mk('g65',9,28,6,10,65);
-const T={q:['47%','공개 질문의<br>거의 절반이<br>“어떤 호수요?”','Ulta TIRTIR 쿠션 페이지<br>공개 질문 43개 중 20개'],
- r:['14%','리뷰의 약 14%가<br>호수 실패','리뷰 345개 중 약 50개가<br>색이 안 맞거나 산화됨 (±5)']};
+const T={q:['8/20','화면에 보이는<br>질문 20개 중 8개가<br>“어떤 호수요?”','Ulta TIRTIR 쿠션 페이지<br>전체 43개 중 보이는 20개 (11/13 직접 셈)'],
+ r:['14%','리뷰의 약 14%가<br>호수 실패','리뷰 345개 중 약 50개가 색이 안 맞거나 산화됨<br>(±5 · 개선안 집계, 재확인 전)']};
 const U={s:['11.9%','해외 쇼핑몰 한국 베이스<br>어두운 호수(30호 이상)','호수 852개 중 · 호수 번호로 나눈 비율이며 실제 색을 잰 값은 아닙니다','점 1개 = 호수 1% (11.9%를 12칸으로 반올림)'],
  b:['10/65','어두운 호수가 있는<br>브랜드','브랜드 65개 중 10개 · 30호 이상 호수가 있는 브랜드 수','점 1개 = 브랜드 1개 (65개 중 10개)']};
 function wire(sec,T,ids){sec.querySelectorAll('.ctl button').forEach(b=>b.addEventListener('click',()=>{
